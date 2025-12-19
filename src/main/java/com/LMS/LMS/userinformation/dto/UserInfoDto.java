@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 public class UserInfoDto {
 
+    private Long id;
     private String fullName;
     private String username;
     private String password;
