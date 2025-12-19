@@ -29,12 +29,6 @@ public class UserInfo {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private LocalDate contractStartDate;
-
-    @Column(nullable = false)
-    private LocalDate getContractEndDate;
-
     @CreationTimestamp
     private LocalDateTime createdAt;
 
