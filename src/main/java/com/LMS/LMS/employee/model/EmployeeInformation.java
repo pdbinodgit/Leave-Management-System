@@ -43,6 +43,9 @@ public class EmployeeInformation {
     @Column(nullable = false)
     private LocalDate getContractEndDate;
 
+    @Column(nullable = false)
+    private Boolean active = true;
+
 
     @CreationTimestamp
     private LocalDateTime createdAt;
