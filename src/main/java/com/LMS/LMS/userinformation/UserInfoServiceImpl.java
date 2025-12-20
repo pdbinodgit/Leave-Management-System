@@ -1,7 +1,7 @@
 package com.LMS.LMS.userinformation;
 
 import com.LMS.LMS.userinformation.dto.UserInfoDto;
-import com.LMS.LMS.userinformation.exception.LmsException;
+import com.LMS.LMS.exception.LmsException;
 import com.LMS.LMS.userinformation.model.UserInfo;
 import com.LMS.LMS.userinformation.repository.UserInfoRepository;
 import com.LMS.LMS.userinformation.service.UserInfoService;

@@ -1,4 +1,4 @@
-package com.LMS.LMS.userinformation.exception;
+package com.LMS.LMS.exception;
 
 import com.LMS.LMS.customresponse.ApiResponse;
 import org.springframework.http.ResponseEntity;

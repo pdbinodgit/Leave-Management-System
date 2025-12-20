@@ -1,6 +1,12 @@
 package com.LMS.LMS.customresponse;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class ApiResponse<T> {
 
