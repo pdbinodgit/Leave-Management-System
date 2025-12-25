@@ -40,6 +40,7 @@ public  class UserInfoServiceImpl implements UserInfoService {
         List<UserInfo> userInfoList=userInfoRepository.findAll();
         List<UserInfoDto> dtoList=new ArrayList<>();
         for(UserInfo userInfo:userInfoList){
+            System.out.println("user id "+userInfo.getId());
            dtoList.add(userInfoMapping.entityToDto(userInfo));
         }
         return dtoList;
