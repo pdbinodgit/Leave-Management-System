@@ -1,6 +1,7 @@
 package com.LMS.LMS.auth;
 
 import com.LMS.LMS.exception.LmsException;
+import com.LMS.LMS.jwt.JwtUtil;
 import com.LMS.LMS.userinformation.model.UserInfo;
 import com.LMS.LMS.userinformation.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,10 @@ public class AuthService {
     @Autowired
     UserInfoRepository userInfoRepository;
 
-    public void  login(LoginRequest loginRequest){
+    @Autowired
+    JwtUtil jwtUtil;
+
+    public String  login(LoginRequest loginRequest){
 
         UserInfo userInfo=userInfoRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(()->new LmsException("User not found", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value()));
@@ -24,5 +28,6 @@ public class AuthService {
         if (!userInfo.getActive()){
             throw new LmsException("User is not active", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value());
         }
+        return jwtUtil.generateToken(userInfo.getUsername());
     }
 }
