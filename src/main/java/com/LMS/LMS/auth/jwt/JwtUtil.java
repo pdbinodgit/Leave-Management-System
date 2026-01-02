@@ -1,4 +1,4 @@
-package com.LMS.LMS.jwt;
+package com.LMS.LMS.auth.jwt;
 
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
@@ -12,8 +12,9 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final String KEY="my-super-secret-jwt-key-for-hs256-123456";
-
+    private final String KEY="mysupersecretjwtkeyforhs2561234561234567986654323edcvgtyhbnju";
+    private final java.security.Key signingKey =
+            Keys.hmacShaKeyFor(KEY.getBytes(StandardCharsets.UTF_8));
     public String generateToken(String username){
         return Jwts.builder()
                 .setSubject(username)
@@ -21,8 +22,17 @@ public class JwtUtil {
                 .setExpiration(
                         new Date(System.currentTimeMillis()+1000*60*60)
                 )
-                .signWith(Keys.hmacShaKeyFor(KEY.getBytes()), SignatureAlgorithm.HS256)
+                .signWith(signingKey, SignatureAlgorithm.HS256)
                 .compact();
+    }
+
+    public String extractUsernameFromToken(String token){
+        return Jwts.parserBuilder()
+                .setSigningKey(signingKey)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
 }

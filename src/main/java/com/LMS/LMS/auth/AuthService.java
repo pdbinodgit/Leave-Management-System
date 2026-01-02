@@ -1,7 +1,7 @@
 package com.LMS.LMS.auth;
 
 import com.LMS.LMS.exception.LmsException;
-import com.LMS.LMS.jwt.JwtUtil;
+import com.LMS.LMS.auth.jwt.JwtUtil;
 import com.LMS.LMS.userinformation.model.UserInfo;
 import com.LMS.LMS.userinformation.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
