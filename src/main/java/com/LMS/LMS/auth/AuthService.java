@@ -21,10 +21,6 @@ public class AuthService {
 
         UserInfo userInfo=userInfoRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(()->new LmsException("User not found", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value()));
-
-        if (!userInfo.getPassword().equals(loginRequest.getPassword())){
-            throw new LmsException("Invalid user", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value());
-        }
         if (!userInfo.getActive()){
             throw new LmsException("User is not active", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value());
         }
