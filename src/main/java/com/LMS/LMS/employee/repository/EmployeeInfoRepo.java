@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface EmployeeInfoRepo extends JpaRepository<EmployeeInformation,Long> {
 
     public Optional<EmployeeInformation> findByEmployeeCode(String code);
+
+    public boolean existsByEmployeeCode(String code);
 }
