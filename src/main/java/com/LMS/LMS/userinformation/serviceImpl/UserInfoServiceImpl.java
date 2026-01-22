@@ -1,4 +1,4 @@
-package com.LMS.LMS.userinformation;
+package com.LMS.LMS.userinformation.serviceImpl;
 
 import com.LMS.LMS.role.UserRole;
 import com.LMS.LMS.userinformation.dto.UserInfoDto;

@@ -31,10 +31,13 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
     @Override
     public EmployeeInformationDto saveEmployeeInformation(EmployeeInformationDto dto) {
         String employeeCode=autoGenerateCode.generateEmployeeCode();
+        System.out.println("date"+dto.getContractEndDate());
         if (employeeCode.isEmpty()){
             throw new LmsException("Employee code error", HttpStatus.INTERNAL_SERVER_ERROR,500);
         }
         EmployeeInformation information=employeeInformationMapping.dtoToEntity(dto);
+        System.out.println("date 1 "+information.getContractEndDate());
+        System.out.println("date 2 "+information.getContractStartDate());
         information.setEmployeeCode(employeeCode);
         information.setCreatedAt(LocalDateTime.now());
         return employeeInformationMapping.entityToDto(employeeInfoRepo.save(information));

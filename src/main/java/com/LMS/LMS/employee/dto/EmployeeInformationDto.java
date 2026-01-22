@@ -22,7 +22,7 @@ public class EmployeeInformationDto {
 
     private LocalDate contractStartDate;
 
-    private LocalDate getContractEndDate;
+    private LocalDate contractEndDate;
 
 
 

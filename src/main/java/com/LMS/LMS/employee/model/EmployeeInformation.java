@@ -41,7 +41,7 @@ public class EmployeeInformation {
     private LocalDate contractStartDate;
 
     @Column(nullable = false)
-    private LocalDate getContractEndDate;
+    private LocalDate contractEndDate;
 
     @Column(nullable = false)
     private Boolean active = true;
