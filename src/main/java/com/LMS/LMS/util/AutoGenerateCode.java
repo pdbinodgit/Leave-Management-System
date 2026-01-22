@@ -3,9 +3,10 @@ package com.LMS.LMS.util;
 
 import com.LMS.LMS.employee.repository.EmployeeInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Random;
-
+@Service
 public class AutoGenerateCode {
 
     @Autowired
