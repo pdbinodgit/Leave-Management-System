@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface LeaveRepo extends JpaRepository<LeaveInformation,Long> {
 
     public Optional<LeaveInformation> findByPresentStatus(boolean status);
+
+    public Optional<LeaveInformation> findByLeaveTypeAndPresentStatus(String name,boolean status);
 }
