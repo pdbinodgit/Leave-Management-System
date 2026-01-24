@@ -9,18 +9,19 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "leave")
+@Table(name = "leave_information")
 @Getter
 @Setter
-public class Leave {
+public class LeaveInformation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "leave_type",nullable = false)
     private String leaveType;
 
-    @Column(name = "leave_type",nullable = false)
+    @Column(name = "total_leave",nullable = false)
     private Long totalLeave;
 
     @Column(nullable = false)
