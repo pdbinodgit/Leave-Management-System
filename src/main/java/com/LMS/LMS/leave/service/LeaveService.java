@@ -10,7 +10,7 @@ public interface LeaveService {
 
     public List<LeaveDto> findAllLeave();
 
-    public LeaveDto findByStatus(boolean status);
+    public List<LeaveDto> findByStatus(boolean status);
 
     public LeaveDto findByLeaveType(String leave);
 }
