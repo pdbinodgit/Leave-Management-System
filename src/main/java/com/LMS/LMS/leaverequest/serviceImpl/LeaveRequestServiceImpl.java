@@ -1,16 +1,67 @@
 package com.LMS.LMS.leaverequest.serviceImpl;
 
+import com.LMS.LMS.exception.LmsException;
+import com.LMS.LMS.leavebalance.model.LeaveBalance;
+import com.LMS.LMS.leavebalance.repository.LeaveBalanceRepository;
 import com.LMS.LMS.leaverequest.dto.LeaveRequestDto;
+import com.LMS.LMS.leaverequest.model.LeaveRequest;
+import com.LMS.LMS.leaverequest.repository.LeaveRequestRepository;
 import com.LMS.LMS.leaverequest.service.LeaveRequestService;
+import com.LMS.LMS.mapper.LeaveRequestMapper;
 import com.LMS.LMS.status.LeaveStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class LeaveRequestServiceImpl implements LeaveRequestService {
+
+    @Autowired
+    LeaveRequestRepository leaveRequestRepository;
+
+    @Autowired
+    LeaveBalanceRepository leaveBalanceRepository;
+    @Autowired
+    LeaveRequestMapper leaveRequestMapper;
+
     @Override
     public LeaveRequestDto saveLeave(LeaveRequestDto leaveRequestDto) {
-        return null;
+        long days;
+
+        boolean leaveStatus=  leaveRequestRepository.existsByEmployeeIdAndPresentStatusAndStartDateLessThanEqualAndEndDateGreaterThanEqual(leaveRequestDto.getId(),
+                true,
+                leaveRequestDto.getStartDate(),
+                leaveRequestDto.getEndDate());
+/*
+        check if leave already exist or not
+        -> if leave exist = Bad request
+        ->if not = next step
+*/
+        if (leaveStatus){
+            throw new LmsException("Leave already present", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value());
+        }
+
+        days= ChronoUnit.DAYS.between(leaveRequestDto.getStartDate(),leaveRequestDto.getEndDate());
+        /*
+        * check if leave sufficient or not
+        * */
+
+        Optional<LeaveBalance> balance=leaveBalanceRepository.findByEmployee_IdAndLeaveType_Id(leaveRequestDto.getEmployee().getId(),leaveRequestDto.getLeaveInformation().getId());
+
+        if (balance.get().getRemaining()>=days){
+            throw new LmsException("You don't have sufficient leave.", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value());
+        }
+        LeaveRequest request= leaveRequestRepository.save(leaveRequestMapper.dtoToEntity(leaveRequestDto));
+        request.setTotalTakenDays(days);
+        request.setPresentStatus(true);
+        request.setLeaveStatus(LeaveStatus.PENDING);
+
+        return leaveRequestMapper.entityToDto(leaveRequestRepository.save(request));
     }
 
     @Override

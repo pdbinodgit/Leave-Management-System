@@ -38,9 +38,11 @@ public class LeaveRequest {
 
     private LocalDate endDate;
 
-    private int totalTakenDays;
+    private long totalTakenDays;
 
     private LeaveStatus leaveStatus;
+
+    private boolean presentStatus;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
