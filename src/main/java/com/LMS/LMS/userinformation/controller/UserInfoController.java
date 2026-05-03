@@ -17,6 +17,7 @@ public class UserInfoController {
 
     @PostMapping("/save")
     public ResponseEntity<ApiResponse<?>> saveUser(@RequestBody UserInfoDto dto){
+        System.out.println("password "+dto.getPassword());
         userInfoService.saveUserInfo(dto);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(HttpStatus.OK,"User created successfully"));
     }
