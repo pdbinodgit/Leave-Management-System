@@ -28,7 +28,7 @@ public class LeaveBalanceServiceImpl implements LeaveBalanceService {
         for (LeaveInformation information:leaveInformationList){
             Optional<LeaveBalance> optionalLeaveBalance=leaveBalanceRepository
                     .findByEmployee_IdAndPresentStatusAndYearAndLeaveType_Id(employeeInformation.getId(),
-                            true, LocalDate.now().getYear(),
+                            true, String.valueOf(LocalDate.now().getYear()),
                             information.getId());
             if (!optionalLeaveBalance.isPresent()){
                 LeaveBalance leaveBalance=new LeaveBalance();

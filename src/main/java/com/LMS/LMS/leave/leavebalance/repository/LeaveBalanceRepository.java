@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface LeaveBalanceRepository extends JpaRepository<LeaveBalance,Long> {
 
     Optional<LeaveBalance> findByEmployee_IdAndLeaveType_IdAndPresentStatus(long userId,long leaveId,boolean status);
-    Optional<LeaveBalance> findByEmployee_IdAndPresentStatusAndYearAndLeaveType_Id(long employeeId, boolean status, int year, long leaveId);
+    Optional<LeaveBalance> findByEmployee_IdAndPresentStatusAndYearAndLeaveType_Id(long employeeId, boolean status, String year, long leaveId);
 
 }
