@@ -1,7 +1,7 @@
 package com.LMS.LMS.leaverequest.model;
 
 import com.LMS.LMS.employee.model.EmployeeInformation;
-import com.LMS.LMS.leave.model.LeaveInformation;
+import com.LMS.LMS.leaveinformation.model.LeaveInformation;
 import com.LMS.LMS.status.LeaveStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

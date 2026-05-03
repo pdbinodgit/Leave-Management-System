@@ -1,7 +1,7 @@
 package com.LMS.LMS.leaverequest.dto;
 
 import com.LMS.LMS.employee.model.EmployeeInformation;
-import com.LMS.LMS.leave.model.LeaveInformation;
+import com.LMS.LMS.leaveinformation.model.LeaveInformation;
 import com.LMS.LMS.status.LeaveStatus;
 import lombok.Getter;
 import lombok.Setter;

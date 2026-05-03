@@ -1,4 +1,4 @@
-package com.LMS.LMS.leave.dto;
+package com.LMS.LMS.leaveinformation.dto;
 
 import lombok.Getter;
 import lombok.Setter;

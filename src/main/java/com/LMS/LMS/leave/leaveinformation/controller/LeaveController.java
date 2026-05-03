@@ -1,8 +1,8 @@
-package com.LMS.LMS.leave.controller;
+package com.LMS.LMS.leaveinformation.controller;
 
 import com.LMS.LMS.customresponse.ApiResponse;
-import com.LMS.LMS.leave.dto.LeaveDto;
-import com.LMS.LMS.leave.service.LeaveService;
+import com.LMS.LMS.leaveinformation.dto.LeaveDto;
+import com.LMS.LMS.leaveinformation.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

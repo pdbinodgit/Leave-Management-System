@@ -1,6 +1,6 @@
-package com.LMS.LMS.leave.repository;
+package com.LMS.LMS.leaveinformation.repository;
 
-import com.LMS.LMS.leave.model.LeaveInformation;
+import com.LMS.LMS.leaveinformation.model.LeaveInformation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

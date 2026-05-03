@@ -51,7 +51,7 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
         * check if leave sufficient or not
         * */
 
-        Optional<LeaveBalance> balance=leaveBalanceRepository.findByEmployee_IdAndLeaveType_Id(leaveRequestDto.getEmployee().getId(),leaveRequestDto.getLeaveInformation().getId());
+        Optional<LeaveBalance> balance=leaveBalanceRepository.findByEmployee_IdAndLeaveType_IdAndPresentStatus(leaveRequestDto.getEmployee().getId(),leaveRequestDto.getLeaveInformation().getId(),true);
 
         if (balance.get().getRemaining()>=days){
             throw new LmsException("You don't have sufficient leave.", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value());
