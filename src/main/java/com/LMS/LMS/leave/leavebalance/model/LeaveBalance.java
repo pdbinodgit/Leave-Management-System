@@ -1,7 +1,7 @@
-package com.LMS.LMS.leavebalance.model;
+package com.LMS.LMS.leave.leavebalance.model;
 
 import com.LMS.LMS.employee.model.EmployeeInformation;
-import com.LMS.LMS.leaveinformation.model.LeaveInformation;
+import com.LMS.LMS.leave.leaveinformation.model.LeaveInformation;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,8 +29,8 @@ public class LeaveBalance {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leave_type_id", nullable = false)
     private LeaveInformation leaveType;
-    private int totalLeave;
-    private int remaining;
+    private Long totalLeave;
+    private Long remaining;
     private  String year;
     private boolean presentStatus;
 }

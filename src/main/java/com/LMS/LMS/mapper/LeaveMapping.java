@@ -1,7 +1,7 @@
 package com.LMS.LMS.mapper;
 
-import com.LMS.LMS.leave.dto.LeaveDto;
-import com.LMS.LMS.leave.model.LeaveInformation;
+import com.LMS.LMS.leave.leaveinformation.dto.LeaveDto;
+import com.LMS.LMS.leave.leaveinformation.model.LeaveInformation;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

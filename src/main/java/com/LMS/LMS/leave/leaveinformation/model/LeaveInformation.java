@@ -1,4 +1,4 @@
-package com.LMS.LMS.leaveinformation.model;
+package com.LMS.LMS.leave.leaveinformation.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

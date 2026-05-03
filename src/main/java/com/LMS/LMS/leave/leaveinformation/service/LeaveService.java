@@ -1,6 +1,6 @@
-package com.LMS.LMS.leaveinformation.service;
+package com.LMS.LMS.leave.leaveinformation.service;
 
-import com.LMS.LMS.leaveinformation.dto.LeaveDto;
+import com.LMS.LMS.leave.leaveinformation.dto.LeaveDto;
 
 import java.util.List;
 

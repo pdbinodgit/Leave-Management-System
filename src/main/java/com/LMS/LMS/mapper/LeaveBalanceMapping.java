@@ -1,8 +1,8 @@
 package com.LMS.LMS.mapper;
 
 
-import com.LMS.LMS.leavebalance.dto.LeaveBalanceDto;
-import com.LMS.LMS.leavebalance.model.LeaveBalance;
+import com.LMS.LMS.leave.leavebalance.dto.LeaveBalanceDto;
+import com.LMS.LMS.leave.leavebalance.model.LeaveBalance;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

@@ -1,6 +1,6 @@
-package com.LMS.LMS.leaverequest.service;
+package com.LMS.LMS.leave.leaverequest.service;
 
-import com.LMS.LMS.leaverequest.dto.LeaveRequestDto;
+import com.LMS.LMS.leave.leaverequest.dto.LeaveRequestDto;
 import com.LMS.LMS.status.LeaveStatus;
 
 import java.util.List;

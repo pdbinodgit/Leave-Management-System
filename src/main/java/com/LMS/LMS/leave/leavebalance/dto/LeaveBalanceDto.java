@@ -1,7 +1,7 @@
-package com.LMS.LMS.leavebalance.dto;
+package com.LMS.LMS.leave.leavebalance.dto;
 
 import com.LMS.LMS.employee.model.EmployeeInformation;
-import com.LMS.LMS.leaveinformation.model.LeaveInformation;
+import com.LMS.LMS.leave.leaveinformation.model.LeaveInformation;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,10 +1,10 @@
-package com.LMS.LMS.leaveinformation.serviceImpl;
+package com.LMS.LMS.leave.leaveinformation.serviceImpl;
 
 import com.LMS.LMS.exception.LmsException;
-import com.LMS.LMS.leaveinformation.dto.LeaveDto;
-import com.LMS.LMS.leaveinformation.model.LeaveInformation;
-import com.LMS.LMS.leaveinformation.repository.LeaveRepo;
-import com.LMS.LMS.leaveinformation.service.LeaveService;
+import com.LMS.LMS.leave.leaveinformation.dto.LeaveDto;
+import com.LMS.LMS.leave.leaveinformation.model.LeaveInformation;
+import com.LMS.LMS.leave.leaveinformation.repository.LeaveRepo;
+import com.LMS.LMS.leave.leaveinformation.service.LeaveService;
 import com.LMS.LMS.mapper.LeaveMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
