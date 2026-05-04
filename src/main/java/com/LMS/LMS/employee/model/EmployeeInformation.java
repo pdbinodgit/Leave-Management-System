@@ -36,6 +36,9 @@ public class EmployeeInformation {
     @Column(name = "employee_code",nullable = false,unique = true)
     private String employeeCode;
 
+    @Column(name = "gender",nullable = false)
+    private String gender;
+
 
     @Column(nullable = false)
     private LocalDate contractStartDate;

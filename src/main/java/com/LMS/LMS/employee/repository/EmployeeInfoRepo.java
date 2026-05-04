@@ -14,4 +14,6 @@ public interface EmployeeInfoRepo extends JpaRepository<EmployeeInformation,Long
     public boolean existsByEmployeeCode(String code);
 
     public boolean existsByUserInfo(UserInfo info);
+
+    public Optional<EmployeeInformation> findByUserInfo_username(String username);
 }
