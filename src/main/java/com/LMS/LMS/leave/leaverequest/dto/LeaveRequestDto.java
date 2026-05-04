@@ -16,7 +16,7 @@ public class LeaveRequestDto {
     private LeaveInformation leaveInformation;
     private LocalDate startDate;
     private LocalDate endDate;
-    private int totalTakenDays;
+    private long totalTakenDays;
     private LeaveStatus leaveStatus;
     private boolean presentStatus;
 }

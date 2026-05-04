@@ -40,6 +40,7 @@ public class LeaveRequest {
 
     private long totalTakenDays;
 
+    @Enumerated(EnumType.STRING)
     private LeaveStatus leaveStatus;
 
     private boolean presentStatus;

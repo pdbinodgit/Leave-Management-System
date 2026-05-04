@@ -32,7 +32,9 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     public LeaveRequestDto saveLeave(LeaveRequestDto leaveRequestDto) {
         long days;
 
-        boolean leaveStatus=  leaveRequestRepository.existsByEmployeeIdAndPresentStatusAndStartDateLessThanEqualAndEndDateGreaterThanEqual(leaveRequestDto.getId(),
+
+        boolean leaveStatus=  leaveRequestRepository
+                .existsByEmployeeIdAndPresentStatusAndStartDateLessThanEqualAndEndDateGreaterThanEqual(leaveRequestDto.getEmployee().getId(),
                 true,
                 leaveRequestDto.getStartDate(),
                 leaveRequestDto.getEndDate());
@@ -45,22 +47,23 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
             throw new LmsException("Leave already present", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value());
         }
 
-        days= ChronoUnit.DAYS.between(leaveRequestDto.getStartDate(),leaveRequestDto.getEndDate());
+        days= ChronoUnit.DAYS.between(leaveRequestDto.getStartDate(),leaveRequestDto.getEndDate())+1;
+        System.out.println("days"+days);
         /*
         * check if leave sufficient or not
         * */
 
         Optional<LeaveBalance> balance=leaveBalanceRepository.findByEmployee_IdAndLeaveType_IdAndPresentStatus(leaveRequestDto.getEmployee().getId(),leaveRequestDto.getLeaveInformation().getId(),true);
 
-        if (balance.get().getRemaining()>=days){
+        if (balance.get().getRemaining()<=days){
             throw new LmsException("You don't have sufficient leave.", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value());
         }
         LeaveRequest request= leaveRequestRepository.save(leaveRequestMapper.dtoToEntity(leaveRequestDto));
         request.setTotalTakenDays(days);
         request.setPresentStatus(true);
         request.setLeaveStatus(LeaveStatus.PENDING);
-
-        return leaveRequestMapper.entityToDto(leaveRequestRepository.save(request));
+        LeaveRequest requestResponse= leaveRequestRepository.save(request);
+        return leaveRequestMapper.entityToDto(requestResponse);
     }
 
     @Override
