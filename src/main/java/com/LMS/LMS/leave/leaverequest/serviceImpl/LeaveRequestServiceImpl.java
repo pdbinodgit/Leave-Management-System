@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +49,6 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
         }
 
         days= ChronoUnit.DAYS.between(leaveRequestDto.getStartDate(),leaveRequestDto.getEndDate())+1;
-        System.out.println("days"+days);
         /*
         * check if leave sufficient or not
         * */
@@ -58,17 +58,23 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
         if (balance.get().getRemaining()<=days){
             throw new LmsException("You don't have sufficient leave.", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value());
         }
-        LeaveRequest request= leaveRequestRepository.save(leaveRequestMapper.dtoToEntity(leaveRequestDto));
-        request.setTotalTakenDays(days);
+
+        LeaveRequest request= leaveRequestMapper.dtoToEntity(leaveRequestDto);
         request.setPresentStatus(true);
         request.setLeaveStatus(LeaveStatus.PENDING);
+        request.setTotalTakenDays(days);
         LeaveRequest requestResponse= leaveRequestRepository.save(request);
         return leaveRequestMapper.entityToDto(requestResponse);
     }
 
     @Override
     public List<LeaveRequestDto> findAllLeaveRequest() {
-        return List.of();
+        List<LeaveRequest> list=leaveRequestRepository.findAll();
+        List<LeaveRequestDto> dtoList=new ArrayList<>();
+        for (LeaveRequest request:list){
+            dtoList.add(leaveRequestMapper.entityToDto(request));
+        }
+        return dtoList;
     }
 
     @Override
@@ -80,4 +86,5 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     public List<LeaveRequestDto> findAllActiveLeave() {
         return List.of();
     }
+
 }

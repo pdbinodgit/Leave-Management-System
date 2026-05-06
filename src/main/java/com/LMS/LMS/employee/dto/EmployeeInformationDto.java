@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Setter
 public class EmployeeInformationDto {
 
+    private Long id;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private UserInfo userInfo;
 
