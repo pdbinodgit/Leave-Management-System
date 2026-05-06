@@ -79,12 +79,12 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
 
     @Override
     public List<LeaveRequestDto> findAllByStatus(LeaveStatus status) {
-        return List.of();
-    }
-
-    @Override
-    public List<LeaveRequestDto> findAllActiveLeave() {
-        return List.of();
+        List<LeaveRequestDto> listDtos=new ArrayList<>();
+        List<LeaveRequest> list=leaveRequestRepository.findAllLeaveRequestByLeaveStatus(status);
+        for (LeaveRequest request:list){
+            listDtos.add(leaveRequestMapper.entityToDto(request));
+        }
+        return listDtos;
     }
 
 }
