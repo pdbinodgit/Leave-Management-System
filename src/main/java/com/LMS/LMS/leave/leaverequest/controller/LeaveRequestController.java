@@ -20,32 +20,41 @@ public class LeaveRequestController {
     LeaveRequestService leaveRequestService;
 
     @PostMapping("/save")
-    public ResponseEntity<ApiResponse<?>> saveLeave(@RequestBody LeaveRequestDto leaveRequestDto){
+    public ResponseEntity<ApiResponse<?>> saveLeave(@RequestBody LeaveRequestDto leaveRequestDto) {
         leaveRequestService.saveLeave(leaveRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ApiResponse<>(HttpStatus.OK,"Leave request save successfully",leaveRequestDto));
+                new ApiResponse<>(HttpStatus.OK, "Leave request save successfully", leaveRequestDto));
 
     }
 
     @GetMapping("/findAllLeave")
     public ResponseEntity<ApiResponse<?>> findAllLeave() {
-        List<LeaveRequestDto> list=leaveRequestService.findAllLeaveRequest();
+        List<LeaveRequestDto> list = leaveRequestService.findAllLeaveRequest();
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ApiResponse<>(HttpStatus.OK,"Retrieve all leave request  successfully.",list));
+                new ApiResponse<>(HttpStatus.OK, "Retrieve all leave request  successfully.", list));
 
     }
 
     @GetMapping("/findLeaveByActive")
     public ResponseEntity<ApiResponse<?>> findLeaveByActive(@RequestParam LeaveStatus status) {
-        List<LeaveRequestDto> list=leaveRequestService.findAllByStatus(status);
+        List<LeaveRequestDto> list = leaveRequestService.findAllByStatus(status);
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ApiResponse<>(HttpStatus.OK,"Retrieve all "+status+" leave request  successfully.",list));
+                new ApiResponse<>(HttpStatus.OK, "Retrieve all " + status + " leave request  successfully.", list));
 
     }
+
     @GetMapping("/myLeave")
-    public ResponseEntity<ApiResponse<?>> myAllLeave(){
+    public ResponseEntity<ApiResponse<?>> myAllLeave() {
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ApiResponse<>(HttpStatus.OK,"Retrieve your all leave request  successfully.",leaveRequestService.myAllLeave()));    }
+                new ApiResponse<>(HttpStatus.OK, "Retrieve your all leave request  successfully.", leaveRequestService.myAllLeave()));
+    }
+
+    @GetMapping("/leaveForAuthentication")
+    public ResponseEntity<ApiResponse<?>> leaveForAuthentication(){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ApiResponse<>(HttpStatus.OK, "Retrieve all leave request  successfully.", leaveRequestService.leaveForAuthentication()));
+    }
 
 
 }
+

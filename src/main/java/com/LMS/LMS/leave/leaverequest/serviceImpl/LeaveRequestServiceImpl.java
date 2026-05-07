@@ -8,7 +8,10 @@ import com.LMS.LMS.leave.leaverequest.model.LeaveRequest;
 import com.LMS.LMS.leave.leaverequest.repository.LeaveRequestRepository;
 import com.LMS.LMS.leave.leaverequest.service.LeaveRequestService;
 import com.LMS.LMS.mapper.LeaveRequestMapper;
+import com.LMS.LMS.role.UserRole;
 import com.LMS.LMS.status.LeaveStatus;
+import com.LMS.LMS.userinformation.model.UserInfo;
+import com.LMS.LMS.userinformation.repository.UserInfoRepository;
 import com.LMS.LMS.util.UserUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +34,8 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     LeaveRequestMapper leaveRequestMapper;
     @Autowired
     UserUtility userUtility;
+    @Autowired
+    UserInfoRepository userInfoRepository;
 
     @Override
     public LeaveRequestDto saveLeave(LeaveRequestDto leaveRequestDto) {
@@ -99,5 +104,18 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
         }
         return dtoList;
     }
+
+    @Override
+    public List<LeaveRequestDto> leaveForAuthentication() {
+        Optional<UserInfo> userInfo = userInfoRepository.findById(userUtility.getUserId());
+        if (userInfo.isPresent()) {
+            if (userInfo.get().getUserRole().equals(UserRole.HR)) {
+                return findAllByStatus(LeaveStatus.PENDING);
+            }
+        }
+            return new ArrayList<>();
+
+    }
+
 
 }
