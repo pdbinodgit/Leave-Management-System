@@ -4,6 +4,7 @@ import com.LMS.LMS.customresponse.ApiResponse;
 import com.LMS.LMS.employee.model.EmployeeInformation;
 import com.LMS.LMS.employee.repository.EmployeeInfoRepo;
 import com.LMS.LMS.leave.leavebalance.service.LeaveBalanceService;
+import com.LMS.LMS.util.UserUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,8 @@ public class AuthController {
     LeaveBalanceService leaveBalanceService;
     @Autowired
     EmployeeInfoRepo employeeInfoRepo;
+    @Autowired
+    UserUtility userUtility;
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<?>> login(@RequestBody LoginRequest loginRequest){

@@ -12,5 +12,6 @@ public interface LeaveRequestService {
     public List<LeaveRequestDto> findAllLeaveRequest();
 
     public List<LeaveRequestDto> findAllByStatus(LeaveStatus status);
+    public List<LeaveRequestDto> myAllLeave();
 
 }

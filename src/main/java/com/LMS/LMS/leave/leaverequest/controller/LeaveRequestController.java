@@ -42,6 +42,10 @@ public class LeaveRequestController {
                 new ApiResponse<>(HttpStatus.OK,"Retrieve all "+status+" leave request  successfully.",list));
 
     }
+    @GetMapping("/myLeave")
+    public ResponseEntity<ApiResponse<?>> myAllLeave(){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ApiResponse<>(HttpStatus.OK,"Retrieve your all leave request  successfully.",leaveRequestService.myAllLeave()));    }
 
 
 }

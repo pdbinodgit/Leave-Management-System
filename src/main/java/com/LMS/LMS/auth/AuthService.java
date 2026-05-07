@@ -24,6 +24,6 @@ public class AuthService {
         if (!userInfo.getActive()){
             throw new LmsException("User is not active", HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value());
         }
-        return jwtUtil.generateToken(userInfo.getUsername());
+        return jwtUtil.generateToken(userInfo.getUsername(),userInfo.getId());
     }
 }

@@ -9,6 +9,7 @@ import com.LMS.LMS.leave.leaverequest.repository.LeaveRequestRepository;
 import com.LMS.LMS.leave.leaverequest.service.LeaveRequestService;
 import com.LMS.LMS.mapper.LeaveRequestMapper;
 import com.LMS.LMS.status.LeaveStatus;
+import com.LMS.LMS.util.UserUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,8 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     LeaveBalanceRepository leaveBalanceRepository;
     @Autowired
     LeaveRequestMapper leaveRequestMapper;
+    @Autowired
+    UserUtility userUtility;
 
     @Override
     public LeaveRequestDto saveLeave(LeaveRequestDto leaveRequestDto) {
@@ -85,6 +88,16 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
             listDtos.add(leaveRequestMapper.entityToDto(request));
         }
         return listDtos;
+    }
+
+    @Override
+    public List<LeaveRequestDto> myAllLeave() {
+        List<LeaveRequest> leaveRequestList=leaveRequestRepository.findAllLeaveRequestByEmployee_Id(userUtility.getUserId());
+        List<LeaveRequestDto> dtoList=new ArrayList<>();
+        for (LeaveRequest request:leaveRequestList){
+           dtoList.add(leaveRequestMapper.entityToDto(request));
+        }
+        return dtoList;
     }
 
 }
