@@ -47,6 +47,19 @@ public class LeaveBalanceServiceImpl implements LeaveBalanceService {
                 }
             }
         }
-
     }
+
+    @Override
+    public void updateLeaveBalance(long leaveId, long employeeId, long totalLeave) {
+
+        Optional<LeaveBalance> leaveBalance=leaveBalanceRepository.findByEmployee_IdAndLeaveType_IdAndPresentStatus(employeeId,leaveId,true);
+        if (leaveBalance.isPresent()){
+            if (leaveBalance.get().getRemaining()>=totalLeave){
+                leaveBalance.get().setRemaining(leaveBalance.get().getRemaining()-totalLeave);
+                leaveBalanceRepository.save(leaveBalance.get());
+            }
+        }
+    }
+
+
 }

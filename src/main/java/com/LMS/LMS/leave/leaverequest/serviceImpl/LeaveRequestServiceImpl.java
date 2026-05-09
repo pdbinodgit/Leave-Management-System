@@ -3,6 +3,7 @@ package com.LMS.LMS.leave.leaverequest.serviceImpl;
 import com.LMS.LMS.exception.LmsException;
 import com.LMS.LMS.leave.leavebalance.model.LeaveBalance;
 import com.LMS.LMS.leave.leavebalance.repository.LeaveBalanceRepository;
+import com.LMS.LMS.leave.leavebalance.service.LeaveBalanceService;
 import com.LMS.LMS.leave.leaverequest.dto.LeaveRequestDto;
 import com.LMS.LMS.leave.leaverequest.model.LeaveRequest;
 import com.LMS.LMS.leave.leaverequest.repository.LeaveRequestRepository;
@@ -36,6 +37,8 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
     UserUtility userUtility;
     @Autowired
     UserInfoRepository userInfoRepository;
+    @Autowired
+    LeaveBalanceService leaveBalanceService;
 
     @Override
     public LeaveRequestDto saveLeave(LeaveRequestDto leaveRequestDto) {
@@ -125,6 +128,7 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
                 leaveRequest.get().setLeaveStatus(LeaveStatus.APPROVED);
                 leaveRequest.get().setPresentStatus(true);
                 leaveRequestRepository.save(leaveRequest.get());
+                leaveBalanceService.updateLeaveBalance(leaveRequest.get().getLeaveInformation().getId(),leaveRequest.get().getEmployee().getId(),leaveRequest.get().getTotalTakenDays());
             }
 
         }else {
