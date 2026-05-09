@@ -1,6 +1,7 @@
 package com.LMS.LMS.leave.leaverequest.service;
 
 import com.LMS.LMS.leave.leaverequest.dto.LeaveRequestDto;
+import com.LMS.LMS.leave.leaverequest.model.LeaveRequest;
 import com.LMS.LMS.status.LeaveStatus;
 
 import java.util.List;
@@ -16,5 +17,7 @@ public interface LeaveRequestService {
     public List<LeaveRequestDto> myAllLeave();
 
     List<LeaveRequestDto> leaveForAuthentication();
+
+    public LeaveRequestDto updateLeaveRequest(long leaveRequestId,LeaveStatus status);
 
 }

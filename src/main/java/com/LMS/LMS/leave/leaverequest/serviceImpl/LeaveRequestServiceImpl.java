@@ -117,5 +117,27 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
 
     }
 
+    @Override
+    public LeaveRequestDto updateLeaveRequest(long leaveRequestId, LeaveStatus status) {
+        if (status.equals(LeaveStatus.APPROVED)){
+            Optional<LeaveRequest> leaveRequest=leaveRequestRepository.findById(leaveRequestId);
+            if (leaveRequest.isPresent()){
+                leaveRequest.get().setLeaveStatus(LeaveStatus.APPROVED);
+                leaveRequest.get().setPresentStatus(true);
+                leaveRequestRepository.save(leaveRequest.get());
+            }
+
+        }else {
+            Optional<LeaveRequest> leaveRequest=leaveRequestRepository.findById(leaveRequestId);
+            if (leaveRequest.isPresent()){
+                leaveRequest.get().setLeaveStatus(LeaveStatus.REJECTED);
+                leaveRequest.get().setPresentStatus(false);
+                leaveRequestRepository.save(leaveRequest.get());
+            }
+        }
+
+        return null;
+    }
+
 
 }

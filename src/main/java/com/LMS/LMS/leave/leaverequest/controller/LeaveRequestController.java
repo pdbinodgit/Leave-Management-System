@@ -55,6 +55,13 @@ public class LeaveRequestController {
                 new ApiResponse<>(HttpStatus.OK, "Retrieve all leave request  successfully.", leaveRequestService.leaveForAuthentication()));
     }
 
+    @GetMapping("/updateLeaveRequest")
+    public ResponseEntity<ApiResponse<?>> updateLeaveRequest(@RequestParam long leaveRequestId, @RequestParam LeaveStatus status) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ApiResponse<>(HttpStatus.OK, "Leave request update successfully.", leaveRequestService.updateLeaveRequest(leaveRequestId,status)));
+    }
 
-}
+
+
+    }
 
