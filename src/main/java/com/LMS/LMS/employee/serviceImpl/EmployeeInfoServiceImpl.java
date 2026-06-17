@@ -40,6 +40,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
         }
         EmployeeInformation information=employeeInformationMapping.dtoToEntity(dto);
         information.setEmployeeCode(employeeCode);
+        information.setGender(dto.getGender());
         information.setCreatedAt(LocalDateTime.now());
         return employeeInformationMapping.entityToDto(employeeInfoRepo.save(information));
 
@@ -50,7 +51,16 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
         List<EmployeeInformation> employeeInformationList=employeeInfoRepo.findAll();
         List<EmployeeInformationDto> dtoList=new ArrayList<>();
         for (EmployeeInformation information:employeeInformationList){
-            dtoList.add(employeeInformationMapping.entityToDto(information));
+            EmployeeInformationDto dto=new EmployeeInformationDto();
+            dto.setEmployeeCode(information.getEmployeeCode());
+            dto.setFirstName(information.getFirstName());
+            dto.setMiddleName(information.getMiddleName());
+            dto.setLastName(information.getLastName());
+            dto.setGender(information.getGender());
+            dto.setContractEndDate(information.getContractEndDate());
+            dto.setContractStartDate(information.getContractStartDate());
+            dto.setUsername(information.getUserInfo().getUsername());
+            dtoList.add(dto);
         }
 
         return dtoList;

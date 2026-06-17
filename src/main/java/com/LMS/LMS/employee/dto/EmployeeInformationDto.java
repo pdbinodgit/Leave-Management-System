@@ -21,12 +21,15 @@ public class EmployeeInformationDto {
 
     private String lastName;
 
+    private String gender;
+
     private String employeeCode;
 
     private LocalDate contractStartDate;
 
     private LocalDate contractEndDate;
 
+    private String username;
 
 
 }

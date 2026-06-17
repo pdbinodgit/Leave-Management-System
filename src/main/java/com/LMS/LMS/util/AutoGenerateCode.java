@@ -17,7 +17,7 @@ public class AutoGenerateCode {
     public String generateEmployeeCode(){
         try {
             int code=100+random.nextInt(900);
-            String finalCode="COMPANY_EMP_"+code;
+            String finalCode="EMP_"+code;
             if (employeeInfoRepo.existsByEmployeeCode(finalCode)){
                 return "ERROR";
             }else {
